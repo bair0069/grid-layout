@@ -1,19 +1,75 @@
-const numberOfRows = document.querySelector("#rows").value;
+
+const numberOfRows = document.querySelector("#rows")
 const grid = document.querySelector("#grid");
-const numberOfColumns = document.querySelector("#cols").value;
+const numberOfColumns = document.querySelector("#cols")
 const numOfBoxes = document.querySelector("#boxes");
 const form = document.querySelector(".form");
-form.addEventListener("submit", (e) => {
+const boxHeight = document.querySelector("#height");
+const boxWidth = document.querySelector("#width");
+const gap = document.querySelector("#gap");
+const ratios = document.querySelectorAll(".ratio-choice");
+
+function init (){
+  clearGrid();
+  createGrid(numOfBoxes.value);
+}
+
+
+form.addEventListener("change", (e) => {
   e.preventDefault();
   clearGrid();
+  getRadioSelection();
   createGrid(numOfBoxes.value);
 });
 
 function clearGrid (){
+  console.log("init fired")
   grid.innerHTML = "";
   grid.classList.remove("created-grid");
 }
+
+function getRadioSelection (){
+  let ratioList = Array.from(ratios);
+  let radioChoice =ratioList.filter(radio => {
+    radio.addEventListener('click',(e)=>{
+      let selection = e.target.closest('.ratio-choice')
+      selection.checked = true;
+      
+    });
+    return radio.checked;
+  })
+  console.log(radioChoice[0].value)
+  let choice = radioChoice[0].value;
+  switch (choice) {
+    case "1:1":
+      boxHeight.disabled=false;
+      boxWidth.disabled=true;
+      return boxWidth.value = boxHeight.value
+
+    case "3:4":
+      boxHeight.disabled=false;
+      boxWidth.disabled=true;
+      return boxWidth.value = boxHeight.value * 3/4
+    case "4:3":
+      boxHeight.disabled=false;
+      boxWidth.disabled=true;
+      return boxWidth.value = boxHeight.value * 4/3
+    case "16:9":
+      boxWidth.disabled=false;
+      boxHeight.disabled=true;
+      return boxHeight.value = boxWidth.value * 9/16
+    case "Custom":
+      boxHeight.disabled=false;
+      boxWidth.disabled=false;
+      return
+    default:
+      return
+}
+}
+
+
 function createGrid(boxes) {
+
   console.log("adding", boxes, "boxes");
   for (let i = 0; i < boxes; i++) {
     let div = document.createElement("div");
@@ -22,6 +78,16 @@ function createGrid(boxes) {
   }
   grid.classList.add("created-grid");
 
-  grid.style.gridTemplateColumns = `repeat(${numberOfColumns}, 1fr)`;
-  grid.style.gridTemplateRows = `repeat(${numberOfRows}, 1fr)`;
+  grid.style.gridTemplateColumns = `repeat(${numberOfColumns.value}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${numberOfRows.value}, 1fr)`;
+  grid.style.gridGap = `${gap.value}rem`;
+
+  let gridItems = document.querySelectorAll(".grid-item");
+  if(gridItems) {
+    gridItems.forEach(item => {
+      item.style.height = `${boxHeight.value}rem`;
+      item.style.width = `${boxWidth.value}rem`;
+    });
+  }
+  else {boxHeight.display = "none", boxWidth.display = "none"}
 }

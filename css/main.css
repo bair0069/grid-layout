@@ -1,16 +1,33 @@
 #grid {
+  display: grid;
   background-color: black;
   height:50rem;
   width:auto;
-  display: grid;
   gap:2rem;
-  grid-template-columns: 1fr,1fr,1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   overflow: scroll;
 }
 
 .grid-item {
-
   background-color: rgb(153, 153, 153);
   color:black
 }
+
+.form-selection {
+  justify-self: flex-end;
+  padding-right:2rem;
+}
+
+.form-selection input {
+  width:3rem;
+  font-size: 1rem;
+}
+
+#ratio-selection {
+  width:60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
