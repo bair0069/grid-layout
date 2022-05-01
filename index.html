@@ -9,7 +9,6 @@
 </head>
 <body>
   <form class="form" >
-    <legend> Grid </legend>
     <legend>Grid Layout</legend>
     <div class="grid-item-grouping">
         <fieldset id="layout">
@@ -17,13 +16,15 @@
             <label for="boxes">Number of Items:</label>
             <input type="number" id="boxes" name="boxes" value="10" min="1" max="100">
           </div>
-          <div class="form-selection">
+          <div class="form-selection auto-selection">
+            <label for="rows-auto">Auto</label>
+            <input  class="grid-auto-choice" name="rows-auto"  id="rows-auto"type="checkbox" value="auto">
             <label for="rows">Rows:</label>
-            <input type="number" name="rows" id="rows" min="1">
+            <input type="number" name="rows" id="rows" min="1" value="1">
           </div>
           <div class="form-selection">
             <label for="number-of-cols">Columns:</label>
-            <input type="number" name="cols" id="cols" min ="1">
+            <input type="number" name="cols" id="cols" min ="1" value="1">
           </div>
           <div class="form-selection">
             <label for="gap">Grid Gap</label>
@@ -32,8 +33,8 @@
         </fieldset>
         <legend>Grid Item Dimensions</legend>
         <fieldset id="box-sizing">
+          <label for="ratio">Box-Ratio</label>
           <div id="ratio-selection">
-            <label for="ratio">Box-Ratio</label>
             <div class="radio-item">
               <label for="choice1">1:1</label>
               <input name="ratio" class="ratio-choice" type="radio" id="choice1" value="1:1" >
@@ -52,16 +53,16 @@
             </div>
             <div class="radio-item">
               <label for ="choice6"> Custom</label>
-              <input name="ratio" class="ratio-choice" type="radio" id="choice6" value="Custom">
+              <input name="ratio" class="ratio-choice" type="radio" id="choice6" value="Custom" default>
             </div>
-        </div>
+          </div>
           <div class="form-selection">
             <label for="width">Box-Width</label>
-            <input type="number" name="width" id="width" value="8">
+            <input type="number" name="width" id="width" value="8" min="0">
           </div>
           <div class="form-selection">
             <label for="height">Box-Height</label>
-            <input type="number" name="height" id="height" value="10">
+            <input type="number" name="height" id="height" value="10" min="0">
           </div>
           
         </fieldset>

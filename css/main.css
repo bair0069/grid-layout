@@ -1,12 +1,36 @@
+*::before, *::after {
+  box-sizing: border-box;
+}
+html {
+  box-sizing: inherit;
+}
+
+body {
+  display: grid;
+  width:100%;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows:auto;
+  background-color: rgb(200, 200, 200);
+}
+
+.grid-container {
+  display:flex;
+  width:100%;
+  height:100%;
+}
+.form {
+  width:100%;
+}
+
 #grid {
   display: grid;
+  width:100%;
+  height:100%;
   background-color: black;
-  height:50rem;
-  width:auto;
   gap:2rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns:auto;
   grid-template-rows: auto;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .grid-item {
@@ -19,15 +43,38 @@
   padding-right:2rem;
 }
 
+.form-selection.auto-selection {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap:1rem;
+}
+
 .form-selection input {
   width:3rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
+}
+
+#layout {
+  display: grid;
+  gap:2rem;
+  justify-content: flex-start;
+}
+
+#box-sizing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap:2rem;
 }
 
 #ratio-selection {
-  width:60%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap:1rem;
 }
+
+
+
+
 
